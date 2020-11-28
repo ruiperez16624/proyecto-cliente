@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Cestas</title>
+
+<link href="css/estilo.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    
+    var informacion = new Array();                       //en un array almacenas la información del formulario
+    var almacenamiento = new Array();                    //en el otro almacenas el array que se ha formado con la info del formulario
+    
+    //función para introducir los datos en el array principal a partir del formulario de pedido
+    function introDatos()
+    {
+        informacion[0] = document.formularioPedido.usuario.value;
+        informacion[1] = document.formularioPedido.correo.value;
+        informacion[2] = document.formularioPedido.tlf.value;
+
+        var pago = document.getElementById("pago");
+        informacion[3] = pago.options[pago.selectedIndex].text;
+
+        var elegido = document.getElementById("elegido");
+        informacion[4] = elegido.options[elegido.selectedIndex].text;
+
+        almacenamiento[0] = informacion;            //introducimos el array de información del formulario dentro del nuevo array
+    }
+
+    //función para mostrar el array bidimensional con los datos del formulario 
+    function mostrar()
+    {
+        var tabla;
+                                    
+        tabla = "<table id=\"genTabla\" border=4>";
+        
+        for (var i = 0; i < 1; i++)
+        {
+            
+            for (var j = 0; j < informacion.length; j++)
+            {         
+                tabla = tabla + "<tr>";                      
+                if (j == 0)
+                {
+                    tabla = tabla + "<th>Usuario</th>";
+                }
+                else if (j == 1)
+                {
+                    tabla = tabla + "<th>Correo Electrónico</th>";
+                }
+                else if (j == 2)
+                {
+                    tabla = tabla + "<th>Teléfono</th>";
+                }
+                else if (j == 3)
+                {
+                    tabla = tabla + "<th>Forma Pago</th>";
+                }
+                else if (j == 4)
+                {
+                    tabla = tabla + "<th>Cesta</th>";
+                }
+                tabla = tabla + "<td>" + almacenamiento[i][j] + "</td>";
+                tabla = tabla + "</tr>"; 
+            }
+                      
+        }
+        tabla = tabla + "</table>";
+
+        tabla += "<div style=\"margin-left: 32%;margin-right: 32%;\"><input type=\"button\" value=\"Realizar Pedido\" class=\"btn2\" onclick=\"abreVentana2()\"></div>";
+        document.getElementById("resumenInformacion").innerHTML = tabla;
+
+    }
+    //Está función abre una ventana para confirmar que el pedido de cesta al introducir los datos en el formulario se ha realizado con éxito
+    function abreVentana2()
+    {
+	var ventanaRealizar;
+	ventanaRealizar = window.open("./ventanaSecundariaPedidoRealizado.html","Enviado","width=300,height=280,top=100,left=300");
+	ventanaRealizar.focus();
+    }
+</script>
+</head>
+
+	<body class="unColor">
+        <div id="container">
+            <div id="header">
+                <div class="flotar1">
+                    <a href="index.html"><img src="img/logo2.png" title="Inicio de Panader&iacute;a DIW" alt="Logo de Panader�a DIW" width="180px" /></a>
+                </div>
+                
+                <div id="menu">
+                    <div class="hola">
+                        <h3 id="seleccionado">Inicio</h3>
+                    </div>
+                    <div class="hola">
+                        <a href="Pedido.html" target="_self"><h3>Tu Pedido</h3></a>
+                    </div>
+                    <div class="hola">
+                        <a href="Miembros.html" target="_self"><h3>Nuestros Miembros</h3></a>
+                    </div>  
+                    <div class="hola">
+                        <a href="sugerencias.html" target="_self"><h3>Sugerencias</h3></a>
+                    </div>                                 
+                </div>  
+            </div>   
+            
+            <div id="mainContent">
+                <div>
+                    <h3 class="tituloPedido">Introduce tu Pedido</h3>
+                </div>
+                <div>
+                    <input type="button" value="Ver Nuestras Cestas" onclick="var T=(parseInt(window.screen.height)/2)-150; var L=(parseInt(window.screen.width)/2)-250; ventanaSecundaria=window.open('VentanaEmergente.html','ventanaSec', 'top='+T+', left='+L+', width=500, height=300')">
+                </div>
+                <br>
+                <form name="formularioPedido">
+                    <div>
+                        Usuario:
+                        <input type="text" name="usuario" value="">
+                    </div>
+                    <div>
+                        Correo Electrónico:
+                        <input type="email" name="correo" value="">
+                    </div>
+                    <div>
+                        Teléfono:
+                        <input type="number" name="tlf" value="">
+                    </div>
+                    <div>
+                        Forma de Pago:
+                        <select name="pag" id="pago">
+                            <option value="0">Contrarembolso</option>
+                            <option value="1">PayPal</option>
+                            <option value="2">Tarjeta Credito</option>
+                        </select>
+                    </div>
+                    <div>
+                        Elegir Cesta:
+                        <select name="elegir" id="elegido">
+                            <option value="0">Cesta 1</option>
+                            <option value="1">Cesta 2</option>
+                            <option value="2">Cesta 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="button" value="Ver Resumen" onclick="introDatos(), mostrar()">
+                    </div>
+                </form>           
+                <div>
+                    <p id="resumenInformacion"></p>     <!--aquí es donde va a pintar la tabla-->
+                </div>
+            </div>
+            
+            <div id="footer">
+                        
+                <div class="yi" style="right: 10;">
+                    <p>&copy; Javier Ruipérez</p>
+                </div>
+                <div class="yi">
+                    <input type="button" value="Información adicional" onclick="var T=(parseInt(window.screen.height)/2)-150; var L=(parseInt(window.screen.width)/2)-300; ventanaInfoAdicional = window.open('ventanaInfoAdicional.html', 'Nueva Ventana', 'top='+T+' left='+L+', width=600, height=300');"/>
+                </div>
+                <div class="yi">
+                    <p style="font-size:small;">Productos de primera calidad, productos para celebraciones, eventos de empresa...</p>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

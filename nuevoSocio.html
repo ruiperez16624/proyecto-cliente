@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear nuevo socio</title>
+</head>
+
+<body>
+    <form name="formcrearusuario">
+        <div>
+            <label><strong>Nombre:</strong></label><br />
+            <input type="text" id="txtnom" name="nomape" value="">
+        </div>
+        <div>
+            <label><strong>Apellidos:</strong></label><br />
+            <input type="text" id="txtape" name="apellidos" value="">
+        </div>
+        <div>
+            <label><strong>Foto:</strong></label><br />
+            <input type="text" id="txtfoto" name="foto" value="">
+        </div>
+        <div>
+            <label><strong>Funciones:</strong></label><br />
+            <input type="text" id="txtfunc" name="funcion" value="">
+        </div>
+        <div>
+            <label><strong>Telefono:</strong></label><br />
+            <input type="text" id="txttel" name="telefono" value="" onkeypress="return validarTelefonoEvento(event)">
+        </div>
+        <div>
+            <button onclick="window.close()">Cerrar</button>
+            <button  onclick="guardar()">Guardar datos</button>
+        </div>
+    </form>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
