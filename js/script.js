@@ -10,11 +10,11 @@ function socio(nombre_in, apellidos_in, foto_in, funciones_in, telefono_in) {
     this.telefono = telefono_in;
 }
 
-socios[0] = new socio("Eduardo", "Pérez Ruiz", "./img/eduardo.png", "Juegos", "111111111");
-socios[1] = new socio("Martín", "Ruiz Dom", "./img/martin.png", "Futbolín", "222222222");
-socios[2] = new socio("Juana", "Ramos Díaz", "./img/juana.png", "Cerveza", "333333333");
-socios[3] = new socio("Miguel", "Fisher Ruiz", "./img/miguel.png", "Fútbol Americano", "444444444");
-socios[4] = new socio("Daniel", "Sánchez López", "./img/noel.png", "Ordenadores", "555555555");
+socios[0] = new socio("Eduardo", "Pérez Ruiz", "./img/eduardo.png", "Gerente", "111111111");
+socios[1] = new socio("Martín", "Ruiz Dom", "./img/martin.png", "Marketing", "222222222");
+socios[2] = new socio("Juana", "Ramos Díaz", "./img/juana.png", "Cocina", "333333333");
+socios[3] = new socio("Miguel", "Fisher Ruiz", "./img/miguel.png", "Administración", "444444444");
+socios[4] = new socio("Daniel", "Sánchez López", "./img/noel.png", "Administración", "555555555");
 
 function nuevaVentana() {
     window.open('./nuevoSocio.html', 'Crar nuevo socio', 'top=300px, left=500px, height=300px, width=500px');
@@ -57,8 +57,8 @@ function refrescarDOM(){
 
     select.innerHTML = '';
     for(var i = 0; i < socios.length; i++){
-        select.innerHTML += '<option value=' + i  +'>' + socios[i].nombre + '</option>'
-        console.log(socios[i], i);
+        select.innerHTML += '<option value=' + i  +'>' + socios[i].nombre + '</option>';
+        
     }
 
     mostrarInfo()
